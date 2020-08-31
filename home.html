@@ -26,14 +26,85 @@
 		<b>The Course Work</b> section of this page represents some of the work that I am doing in this course.
 		The links to this work are chronologicically organized by assignment. The <b>Other Sites and Materials</b> section
 		consists of a collection of references to other sites and materials
-		which relate to and enrich upon material presented in the course.
-		<br><br>
+		which relate to and enrich upon material presented in the course.<br><br>
 	</p>
+
 	<hr>
-	<h2>Course Work:</h2>
-		<br><br>
+	<h2>Course Work</h2>
+	<div class="projectBanners" style="background-color:lightgrey">
+		<h1>Semantic Network For Prolog</h1>
+		<!-- Source for creating modal images from W3Schools.com/howto/howto_css_modal_images.asp -->
+		<!-- Trigger the Modal -->
+		<div id="images">
+			<img id="prologIdeas" class="imgPreview" src="./images/CCM_five_ideas_about_Prolog.pdf" alt="Five Ideas About Prolog" style="background-color:white">
+			<img id="semanticNetwork" class="imgPreview" src="./images/semantic_network.jpg" alt="My Semantic Network" style="background-color:white; width:325px">
+		</div>
+		<!-- The Modal -->
+		<div id="prologIdeasModal" class="modal">
+			<!-- The Close Button -->
+			<span class="close">&times;</span>
+			<!-- Modal Content (The Image) -->
+			<img class="modal-content" id="img01" style="background-color:white">
+			<!-- Modal Caption (Image Text) -->
+			<div id="prologIdeasCaption" class="caption"></div>
+		</div>
+
+		<!-- The Modal -->
+		<div id="semanticNetworkModal" class="modal">
+			<!-- The Close Button -->
+			<span class="close">&times;</span>
+			<!-- Modal Content (The Image) -->
+			<img class="modal-content" id="img02" style="background-color:white">
+			<!-- Modal Caption (Image Text) -->
+			<div id="semanticNetworkCaption" class="caption"></div>
+		</div>
+
+	</div>
+
+	<script>
+	//source for creating modal images from W3Schools.com/howto/howto_css_modal_images.asp
+	var prologIdeasModal = document.getElementById("prologIdeasModal");
+	var semanticNetworkModal = document.getElementById("semanticNetworkModal");
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var img = document.getElementById("prologIdeas");
+	var img2 = document.getElementById("semanticNetwork");
+
+	var prologIdeasModalImg = document.getElementById("img01");
+	var semanticNetworkModalImg = document.getElementById("img02");
+
+	var prologIdeasCaptionText = document.getElementById("prologIdeasCaption");
+	var semanticNetworkCaptionText = document.getElementById("semanticNetworkCaption");
+
+	img.onclick = function(){
+		prologIdeasModal.style.display = "block";
+		prologIdeasModalImg.src = this.src;
+		prologIdeasCaptionText.innerHTML = this.alt;
+	}
+
+	img2.onclick = function(){
+		semanticNetworkModal.style.display = "block"
+		semanticNetworkModalImg.src = this.src;
+		semanticNetworkCaptionText.innerHTML = this.alt
+	}
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	var span2 = document.getElementsByClassName("close")[1];
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+		prologIdeasModal.style.display = "none";
+	}
+
+	span2.onclick = function(){
+		semanticNetworkModal.style.display = "none";
+	}
+	</script>
+
+	<br><br>
 	<hr>
-	<h2>Other Sites and Materials:</h2>
+	<h2>Other Sites and Materials</h2>
 		<ol style="font-size: 1.2em">
 			<li><a href="https://en.wikipedia.org/wiki/Cognitive_science">Wiki page on Cognitive Science</a> - Overview of the field of Cognitive Science</li>
 			<li><a href="http://www.cognitivesciencesociety.org/">Cognitive Science Society</a> - Site of the leading organization for the field of Cognitive Science</li>
