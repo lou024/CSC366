@@ -1,4 +1,5 @@
-//source for creating modal images from W3Schools.com/howto/howto_css_modal_images.asp
+// source for creating modal images from W3Schools.com/howto/howto_css_modal_images.asp
+// Get Modals
 var prologIdeasModal = document.getElementById("prologIdeasModal");
 var semanticNetworkModal = document.getElementById("semanticNetworkModal");
 
