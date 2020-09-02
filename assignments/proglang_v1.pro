@@ -1,4 +1,6 @@
 % file: prolang_v1.pro
+% knowledge base about programming languages
+
 % language(L) means that L is a language
 
 language(smalltalk).
