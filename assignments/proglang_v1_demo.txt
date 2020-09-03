@@ -1,0 +1,36 @@
+luisestevez@Luiss-MacBook-Air Assignments % pwd
+/Users/luisestevez/Desktop/CSC366/Assignments
+luisestevez@Luiss-MacBook-Air Assignments % ls
+proglang_v1.pro	proglang_v1.txt
+luisestevez@Luiss-MacBook-Air Assignments % swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 8.3.6)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- module(demo).
+Warning: demo is not a current module (created)
+true.
+
+demo:  ?- consult('proglang_v1.pro').
+true.
+
+demo:  ?- listing.
+
+history(smalltalk, inventor('Alan Kay'), date(1980)).
+history(lisp, inventor('John McCarthy'), date(1959)).
+history(prolog, inventor('Alan Colmeraur'), date(1971)).
+
+essence(smalltalk, object, 'message passing').
+essence(lisp, list, 'relative functions').
+essence(prolog, relation, 'logical inferencing').
+
+language(smalltalk).
+language(lisp).
+language(prolog).
+true.
+
+demo:  ?- halt.
+luisestevez@Luiss-MacBook-Air Assignments % 
