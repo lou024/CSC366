@@ -1,0 +1,65 @@
+luisestevez@Luiss-MacBook-Air Assignments % swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 8.3.6)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- module(demo).
+Warning: demo is not a current module (created)
+true.
+
+demo:  ?- consult('proglang_v2.pro').
+true.
+
+demo:  ?- language(snobol).
+true.
+
+demo:  ?- language(snowball).
+false.
+
+demo:  ?- essence(snobol, DT, _).
+DT = pattern.
+
+demo:  ?- essence(Language, matrix, _).
+Language = apl.
+
+demo:  ?- language(Language).
+Language = smalltalk ;
+Language = lisp ;
+Language = prolog ;
+Language = snobol ;
+Language = apl.
+
+demo:  ?- language(Language), write(Language), nl, fail.
+smalltalk
+lisp
+prolog
+snobol
+apl
+false.
+
+demo:  ?- history(apl, inventor(I), _).
+I = 'Kenneth Iverson'.
+
+demo:  ?- history(_ , inventor(Name), _).
+Name = 'Alan Kay' ;
+Name = 'John McCarthy' ;
+Name = 'Alan Colmeraur' ;
+Name = 'Ralph Griswold (among others)' ;
+Name = 'Kenneth Iverson'.
+
+demo:  ?- history(_ , inventor(Name), _), write(Name), nl, fail.
+Alan Kay
+John McCarthy
+Alan Colmeraur
+Ralph Griswold (among others)
+Kenneth Iverson
+false.
+
+demo:  ?- history(Language, _, date(1959)), essence(Language, list, _).
+Language = lisp.
+
+demo:  ?- halt.
+luisestevez@Luiss-MacBook-Air Assignments % 
