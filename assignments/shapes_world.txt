@@ -1,0 +1,45 @@
+% file: shapes_world.pro
+
+% rectangle(N, height(H), width(W), color(C)) :: N is name of rectangle.
+% L is length, W is width, and C is color.
+
+rectangle(penelope, height(15), width(5), color(yellow)).
+rectangle(maya, height(8), width(20), color(red)).
+rectangle(tobi, height(10), width(8), color(green)).
+
+% ellipse(N, majorradius(A), minorradius(B), color(C)) :: N is name of the ellipse.
+% A is the major radius, B is the minor radius and C is color.
+
+ellipse(steve, majorradius(4), minorradius(3), color(red)).
+ellipse(ron, majorradius(2), minorradius(7), color(green)).
+ellipse(mike, majorradius(3), minorradius(4), color(blue)).
+
+% prints rectangle names to user.
+
+rectangles :- rectangle(N, _, _, _), write(N), nl, fail.
+rectangles.
+
+% prints ellipse names to user.
+
+ellipses :- ellipse(N, _, _, _), write(N), nl, fail. 
+ellipses.
+
+% prints all shapes names shapes :- rectangles, ellipses.
+% finds if shape with name N is color green or red.
+
+red(N) :- ellipse(N, _, _, color(red)).
+red(N) :- rectangle(N, _, _, color(red)).
+
+green(N) :- ellipse(N, _, _, color(green)).
+green(N) :- rectangle(N, _, _, color(green)).
+
+% finds if shape is small or large by Name and area.
+
+large(N) :- area(N, A), A >= 100.
+
+small(N) :- area(N, A), A < 100.
+
+% gives area of shape by Name, where N is Name.
+
+area(N, A) :- ellipse(N, majorradius(A), minorradius(B), _), A is 3.14 * A * B.
+area(N, A) :- rectangle(N, height(H), width(W), _), A is H * W.
