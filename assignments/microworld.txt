@@ -1,14 +1,14 @@
 % file: microworld.pro
 % microworld of Pets (Dogs and Cats).
 
-% dog(N, color(C), gender(G), A, W) :: N is the name,
+% dog(N, color(C), gender(G), A, W) :: N is the name.
 % C is the fur color, A is the age, and W is the weight.
 
 dog(marley, color(yellow), gender(male), 1, 30).
 dog(clifford, color(red), gender(male), 13, 180).
-dog(billy, color(brown), gender(female), 9, 100).
+dog(jojo, color(brown), gender(female), 9, 100).
 
-% cat(N, color(C), gender(G), A, W) :: N is the name,
+% cat(N, color(C), gender(G), A, W) :: N is the name.
 % C is the fur color, A is the age, and W is the weight.
 
 cat(bean, color(brown), gender(female), 10, 25).
@@ -27,14 +27,14 @@ cats.
 pets :- dogs, cats.
 pets.
 
-% male(N) :: finds pet with name 'N', then
+% male(N) :: finds pet with name 'N', then.
 % returns true if pet is male.
 
 male(N) :- dog(N, _, gender(male), _, _).
 male(N) :- cat(N, _, gender(male), _, _).
 
 % female(N) :: finds pet with name 'N', then
-% returns true if pet is female
+% returns true if pet is female.
 
 female(N) :- dog(N, _, gender(female), _, _).
 female(N) :- cat(N, _, gender(female), _, _).
@@ -43,12 +43,19 @@ female(N) :- cat(N, _, gender(female), _, _).
 % returns true if dog is older than 7
 % or if cat is older than 10.
 
-old(N) :- dog(N, _, _, Age, _), Age > 7.
-old(N) :- cat(N, _, _, Age, _), Age > 10.
+old(N) :- dog(N, _, _, Age, _), Age >= 7.
+old(N) :- cat(N, _, _, Age, _), Age >= 10.
+
+% young(N) :: finds pet by name 'N', then
+% returns true if dog is younger than 8,
+% or if cat is younger than 9.
+
+young(N) :- dog(N, _, _, Age, _), Age < 7.
+young(N) :- cat(N, _, _, Age, _), Age < 10.
 
 % heavy(N) :: finds pet by name 'N', then
 % returns true if dog is 70+ lbs
-% or if cat is 15+ lbs 
+% or if cat is 15+ lbs.
 
 heavy(N) :- dog(N, _, _, _, Weight), Weight >= 70.
 heavy(N) :- cat(N, _, _, _, Weight), Weight >= 15.
