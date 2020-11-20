@@ -1,0 +1,210 @@
+%------------------------------------------------------------------------------
+% File: dotspeak_i.pro
+% Type: Prolog source
+% Line: Interpreter for the Dotspeak language
+% Date: Touched 2020
+% ------------------------------------------------------------------------------
+
+% ------------------------------------------------------------------------------
+% libraries
+
+:- consult('../libraries/io/io.pro').
+:- consult('dotsville_lls.pro').
+% -------------------------------------------------------------------------- % DCG for the Dotspeak language
+sentence --> command,[.].
+sentence --> question,[?].
+
+question --> existentialquestion.
+question --> countquestion.
+question --> contentquestion.
+
+command --> displaycommand.
+command --> addcommand.
+command --> deletecommand.
+command --> movecommand.
+command --> [stop], {abort}.
+
+existentialquestion --> [is], [there], nsdot, [not], [on], [the], [table], {is_there_a_dot_not_on_the_table}.
+existentialquestion --> [is], [there], nsdot, [on], [the], [table], {is_there_a_dot}.
+existentialquestion --> [is], [there], nsdot, {is_there_a_dot}.
+
+existentialquestion --> [is], [there], csdot(Color), [on], [the], [table], {is_there_a_dot_of_color_on_table(Color)}.
+existentialquestion --> [is], [there], csdot(Color), [not], [on], [the], [table],
+	{is_there_a_dot_of_color_not_on_table(Color)}.
+existentialquestion --> [is], [there], csdot(Color1), [to], [the], [right], [of], csdot(Color2),
+	{is_color_right_of_color(Color1, Color2)}.
+existentialquestion --> [is], [there], csdot(Color1), [to], [the], [left], [of], csdot(Color2),
+	{is_color_left_of_color(Color1, Color2)}.
+existentialquestion --> [is], [there], csdot(Color), {is_there_a_dot_of_color(Color)}.
+
+countquestion --> countdots, [in], [column], columnid(Column), {how_many_dots_in_column(Column)}.
+countquestion --> countdots, [in], [the], [world], {how_many_dots_in_the_world}.
+countquestion --> countdots, [on], [the], [table].
+countquestion --> countdots, [off], [the], [table].
+
+countquestion --> countcolordots, [in], [column], columnid(_).
+countquestion --> countcolordots, [in], [the], [world].
+countquestion --> countspaces, [in], [column], columnid(_).
+countquestion --> countspaces, [in], [the], [world].
+
+contentquestion --> [is], [column], columnid(Column), [empty], {is_column_empty(Column)}.
+contentquestion --> [is], [column], columnid(Column), [full], {is_column_full(Column)}.
+contentquestion --> [is], [the], [world], [empty].
+contentquestion --> [is], [the], [world], [full].
+
+displaycommand --> [display], [the], [world], {display_world}.
+displaycommand --> [list], [the], color, [dots].
+displaycommand --> [list], [the], [dots], [in], [column], columnid(Column), {list_dots_in_column(Column)}.
+displaycommand --> [list], [the], [dots], [on], [the], [table].
+displaycommand --> [list], [the], [dots], [off], [the], [table].
+displaycommand --> [list], [the], [dots], {list_the_dots}.
+
+addcommand --> [add], nsdot, [to], [column], columnid.
+addcommand --> [add], nsdot, {sprinkle_one_dot}.
+addcommand --> [add], csdot(Color), [to], [column], columnid(Column), {add_one_colored_dot_to_column(Color, Column)}.
+addcommand --> [add], csdot(Color), {add_one_colored_dot(Color)}.
+addcommand --> [fill], [column], columnid(_).
+addcommand --> [fill], [the], [world], {fill_world}.
+addcommand --> [sprinkle], xdigits(xDigits), [dots], [onto], [the], [world], {sprinkle_dots(xDigits)}.
+
+deletecommand --> [remove], nsdot, [from], [column], columnid(Column), {remove_dot_from_column(Column)}.
+deletecommand --> [remove], nsdot, {remove_random_dot}.
+deletecommand --> [clear], [the], [world], {clear_world}.
+
+movecommand --> [move], nsdot, [from], [column], columnid(_), [to], [column], columnid(_).
+
+countdots --> [how], [many], [dots].
+countcolordots --> [how], [many], color, [dots].
+countspaces --> [how], [many], [spaces], [available].
+
+nsdot --> [a], [dot].
+csdot(Color) --> detcolor(Color), [dot].
+
+detcolor(orange) --> [an], [orange].
+detcolor(Color) --> [a], nonorange(Color).
+
+nonorange(blue) --> [blue].
+nonorange(yellow) --> [yellow].
+nonorange(red) --> [red].
+nonorange(green) --> [green].
+nonorange(purple) --> [purple].
+
+color --> [orange].
+color --> [blue].
+color --> [yellow].
+color --> [red].
+color --> [green].
+color --> [purple].
+
+columnid(1) --> [1].
+columnid(1) --> [one].
+columnid(2) --> [2].
+columnid(2) --> [two].
+columnid(3) --> [3].
+columnid(3) --> [three].
+columnid(4) --> [4].
+columnid(4) --> [four].
+columnid(5) --> [5].
+columnid(5) --> [five].
+columnid(6) --> [6].
+columnid(6) --> [six].
+columnid(7) --> [7].
+columnid(7) --> [seven].
+columnid(8) --> [8].
+columnid(8) --> [eight].
+
+xdigits(2) --> [2].
+xdigits(2) --> [two].
+xdigits(3) --> [3].
+xdigits(3) --> [three].
+xdigits(4) --> [4].
+xdigits(4) --> [four].
+xdigits(5) --> [5].
+xdigits(5) --> [five].
+xdigits(6) --> [6].
+xdigits(6) --> [six].
+xdigits(7) --> [7].
+xdigits(7) --> [seven].
+xdigits(8) --> [8].
+xdigits(8) --> [eight].
+xdigits(9) --> [9].
+xdigits(9) --> [nine].
+
+% -------------------------------------------------------------------------- %
+% ----------------------Additional semantic support------------------------- %
+% -------------------------------------------------------------------------- % 
+% is_there_a_dot
+is_there_a_dot :- exists_dot_of_color_on_table(_), write('Yes.'), nl.
+is_there_a_dot :- write('No.'), nl.
+
+% is_there_a_dot_not_on_the_table
+is_there_a_dot_not_on_the_table :- exists_dot_of_color_on_table(_), write('No.'), nl.
+is_there_a_dot_not_on_the_table :- write('Yes.'), nl.
+
+% is_there_a_dot_of_color(Color)
+is_there_a_dot_of_color(Color) :- exists_dot_of_color(Color), write('Yes.'), nl.
+is_there_a_dot_of_color(_) :- write('No.'), nl.
+
+% is_there_a_dot_of_color_on_table(Color)
+is_there_a_dot_of_color_on_table(Color) :- exists_dot_of_color_on_table(Color), write('Yes.'), nl.
+is_there_a_dot_of_color_on_table(_) :- write('No.'), nl.
+
+% is_there_a_dot_of_color_not_on_table(Color)
+is_there_a_dot_of_color_not_on_table(Color) :- exists_dot_of_color_on_table(Color), write('No.'), nl.
+is_there_a_dot_of_color_not_on_table(_) :- write('Yes.'), nl.
+
+% how_many_dots_in_column(Column)
+how_many_dots_in_column(Column) :- count_dots_in_column(Column, Count), write(Count), write(' dots.'), nl.
+
+% how_many_dots_in_the_world
+how_many_dots_in_the_world :- count_dots(Count), write(Count), write(' dots.'), nl.
+
+% is_column_empty(Column)
+is_column_empty(Column) :- dot(cell(1, Column),_), write('No.'), nl.
+is_column_empty(_) :- write('Yes.'), nl.
+
+% is_column_full(Column)
+is_column_full(Column) :- dot(cell(4, Column),_), write('Yes.'), nl.
+is_column_full(_) :- write('No.'), nl.
+
+% list_the_dots
+list_the_dots :- list_dots_in_column(1),
+	list_dots_in_column(2),
+	list_dots_in_column(3),
+	list_dots_in_column(4),
+	list_dots_in_column(5),
+	list_dots_in_column(6).
+
+% add_one_colored_dot_to_column(Color, Column)
+add_one_colored_dot_to_column(Color, Column) :- not(dot(cell(1, Column), color(_))),
+        add_dot(cell(1, Column), color(Color)).
+add_one_colored_dot_to_column(Color, Column) :- not(dot(cell(2, Column), color(_))),
+        add_dot(cell(2, Column), color(Color)).
+add_one_colored_dot_to_column(Color, Column) :- not(dot(cell(3, Column), color(_))),
+        add_dot(cell(3, Column), color(Color)).
+add_one_colored_dot_to_column(Color, Column) :- not(dot(cell(4, Column), color(_))),
+        add_dot(cell(4, Column), color(Color)).
+add_one_colored_dot_to_column(_, _) :- write('### Could not add the dot.'), nl.
+
+
+% add_one_colored_dot(Color)
+add_one_colored_dot(Color) :- available_spaces(S),
+	pick(S, space(Row, Column)),
+	add_dot(cell(Row, Column), color(Color)).
+add_one_colored_dot(_) :- write('### Could not add the dot.'), nl.
+
+% remove_random_dot
+remove_random_dot :- dot(cell(Row,Column),_), Row >= 1, remove_dot_from_column(Column).
+remove_random_dot :- write('No dots to remove.'), nl. 
+
+% is_color_right_of_color(Color1, Color2)
+is_color_right_of_color(Color1, Color2) :- exists_dot_right_of(Color1,Color2), write('Yes.'), nl.
+is_color_right_of_color(_, _) :- write('No.'), nl.
+
+% is_color_left_of_color(Color1, Color2)
+is_color_left_of_color(Color1, Color2) :- exists_dot_left_of(Color1,Color2), write('Yes.'), nl.
+is_color_left_of_color(_, _) :- write('No.'), nl.
+
+% -------------------------------------------------------------------------- % Recognizer -- and interface to the DCG!
+interpreter :- read_sentence(S), sentence(S,[]), interpreter.
+interpreter :- write('Error ...'),nl, interpreter.

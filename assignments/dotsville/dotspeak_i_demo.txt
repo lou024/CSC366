@@ -1,0 +1,113 @@
+luisestevez@Luiss-MacBook-Air Dotsville % swipl
+Welcome to SWI-Prolog (threaded, 64 bits, version 8.3.11)
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software.
+Please run ?- license. for legal details.
+
+For online help and background, visit https://www.swi-prolog.org
+For built-in help, use ?- help(Topic). or ?- apropos(Word).
+
+?- consult('dotspeak_i.pro').
+true.
+
+?- interpreter.
+|: display the world.
+            
+            
+            
+            
+- - - - - - 
+|: stop.
+% Execution Aborted
+?- interpreter.
+|: fill the world.
+|: display the world.
+G B P G Y B 
+Y O R O B O 
+R P R Y P Y 
+Y Y O R Y R 
+- - - - - - 
+|: clear the world.
+|: display the world.
+            
+            
+            
+            
+- - - - - - 
+|: add a dot.
+|: add a dot.
+|: display the world.
+            
+            
+            
+R       G   
+- - - - - - 
+|: is there a dot?
+Yes.
+|: list the dots.
+dot(cell(1,1),color(red))
+dot(cell(1,5),color(green))
+|: add an orange dot.
+|: display the world.
+            
+            
+            
+R     O G   
+- - - - - - 
+|: is there a dot on the table?
+Yes.
+|: is there a dot not on the table?
+No.
+|: is there a red dot?
+Yes.
+|: is there a yellow dot?
+No.
+|: is there a green dot?
+Yes.
+|: is there a green dot on the table?
+Yes.
+|: add a blue dot to column one.
+|: display the world.
+            
+            
+B           
+R     O G   
+- - - - - - 
+|: how many dots in column 1?
+2 dots.
+|: how many dots in column 2
+|: ?
+0 dots.
+|: how many dots in the world?
+4 dots.
+|: is column 3 empty?
+Yes.
+|: is column 1 empty?
+No.
+|: is column 1 full?
+No.
+|: remove a dot from column one.
+|: display the world.
+            
+            
+            
+R     O G   
+- - - - - - 
+|: remove a dot.
+|: display the world.
+            
+            
+            
+      O G   
+- - - - - - 
+|: is there a red dot not on the table?
+Yes.
+|: list the dots in column 4.
+dot(cell(1,4),color(orange))
+|: is there a green dot to the right of an orange dot?
+Yes.
+|: is there an orange dot to the left of a green dot?
+Yes.
+|: stop.
+% Execution Aborted
+?- halt.
+luisestevez@Luiss-MacBook-Air Dotsville % 

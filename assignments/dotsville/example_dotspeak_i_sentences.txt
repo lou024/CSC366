@@ -1,0 +1,23 @@
+display the world.
+stop.
+fill the world.
+clear the world.
+add nsdot.
+is there nsdot.
+list the dots.
+add csdot.
+is there nsdot on the table?
+is there nsdot not on the table?
+is there csdot?
+is there csdot on the table?
+add csdot to column columnid.
+how many dots in column columnid.
+how many dots in the world.
+is column columnid empty?
+is column columnid full?
+remove nsdot from column columnid.
+remove nsdot.
+is there csdot not on the table?
+list the dots in column columnid.
+is there csdot to the right of csdot?
+is there csdot to the left of csdot?
