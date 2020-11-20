@@ -205,6 +205,6 @@ is_color_right_of_color(_, _) :- write('No.'), nl.
 is_color_left_of_color(Color1, Color2) :- exists_dot_left_of(Color1,Color2), write('Yes.'), nl.
 is_color_left_of_color(_, _) :- write('No.'), nl.
 
-% -------------------------------------------------------------------------- % Recognizer -- and interface to the DCG!
+% -------------------------------------------------------------------------- % Interpreter -- and interface to the DCG!
 interpreter :- read_sentence(S), sentence(S,[]), interpreter.
 interpreter :- write('Error ...'),nl, interpreter.
