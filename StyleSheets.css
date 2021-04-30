@@ -1,5 +1,7 @@
 body{
 	font-family: monospace;
+	color: white;
+	background-color: #222629;
 }
 .banner{
 	top: 0px;
